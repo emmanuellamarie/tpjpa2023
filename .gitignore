@@ -1,0 +1,7 @@
+/.idea
+/data
+/target
+hsqldb-2.5.1.jar
+README.md
+*.sh
+*.bat
