@@ -16,9 +16,10 @@ public class Commentaire {
     private Utilisateur utilisateur;
     private Ticket ticket;
 
-    public Commentaire(String titre,Utilisateur utilisateur) {
+    public Commentaire(String titre,Ticket ticket,Utilisateur utilisateur) {
         this.titre = titre;
         this.utilisateur = utilisateur;
+        this.ticket = ticket;
     }
 
     public Commentaire(){}

@@ -1,4 +1,19 @@
 /*C12*/SET SCHEMA PUBLIC
+drop table if exists Commentaire CASCADE 
+drop table if exists Sujet CASCADE 
+drop table if exists Ticket CASCADE 
+drop table if exists Utilisateur CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table Commentaire (id integer not null, body varchar(255), dateCommentaire timestamp, titre varchar(255), ticket_id integer, utilisateur_id integer, primary key (id))
+create table Sujet (id integer not null, libelle varchar(255), primary key (id))
+create table Ticket (id integer not null, body varchar(255), dateAttribution timestamp, dateCreation timestamp, dateResolution timestamp, statut varchar(255), titre varchar(255), sujet_id integer, utilisateurStandard_id integer, utilisateurSupport_id integer, primary key (id))
+create table Utilisateur (DTYPE varchar(31) not null, id integer not null, nom varchar(255), prenom varchar(255), equipe varchar(255), primary key (id))
+alter table Commentaire add constraint FKma1ry2q314mgkv8q8u5lrafdl foreign key (ticket_id) references Ticket
+alter table Commentaire add constraint FKb7i29ppss6dbhwjihif0x2sg6 foreign key (utilisateur_id) references Utilisateur
+alter table Ticket add constraint FKlf62bjr85kurtbajjcjtmef5y foreign key (sujet_id) references Sujet
+alter table Ticket add constraint FK2g9igmtlqd0qgykqm043ans07 foreign key (utilisateurStandard_id) references Utilisateur
+alter table Ticket add constraint FK4dm5bad2pl0xjtw80lf7qntd foreign key (utilisateurSupport_id) references Utilisateur
 DISCONNECT
 /*C13*/SET SCHEMA PUBLIC
 drop table if exists Commentaire CASCADE 
@@ -10,7 +25,7 @@ create sequence hibernate_sequence start with 1 increment by 1
 create table Commentaire (id integer not null, body varchar(255), dateCommentaire timestamp, titre varchar(255), ticket_id integer, utilisateur_id integer, primary key (id))
 create table Sujet (id integer not null, libelle varchar(255), primary key (id))
 create table Ticket (id integer not null, body varchar(255), dateAttribution timestamp, dateCreation timestamp, dateResolution timestamp, statut varchar(255), titre varchar(255), sujet_id integer, utilisateurStandard_id integer, utilisateurSupport_id integer, primary key (id))
-create table Utilisateur (DTYPE varchar(31) not null, id integer not null, nom varchar(255), prenom varchar(255), primary key (id))
+create table Utilisateur (DTYPE varchar(31) not null, id integer not null, nom varchar(255), prenom varchar(255), equipe varchar(255), primary key (id))
 alter table Commentaire add constraint FKma1ry2q314mgkv8q8u5lrafdl foreign key (ticket_id) references Ticket
 alter table Commentaire add constraint FKb7i29ppss6dbhwjihif0x2sg6 foreign key (utilisateur_id) references Utilisateur
 alter table Ticket add constraint FKlf62bjr85kurtbajjcjtmef5y foreign key (sujet_id) references Sujet
@@ -18,6 +33,21 @@ alter table Ticket add constraint FK2g9igmtlqd0qgykqm043ans07 foreign key (utili
 alter table Ticket add constraint FK4dm5bad2pl0xjtw80lf7qntd foreign key (utilisateurSupport_id) references Utilisateur
 DISCONNECT
 /*C14*/SET SCHEMA PUBLIC
+drop table if exists Commentaire CASCADE 
+drop table if exists Sujet CASCADE 
+drop table if exists Ticket CASCADE 
+drop table if exists Utilisateur CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table Commentaire (id integer not null, body varchar(255), dateCommentaire timestamp, titre varchar(255), ticket_id integer, utilisateur_id integer, primary key (id))
+create table Sujet (id integer not null, libelle varchar(255), primary key (id))
+create table Ticket (id integer not null, body varchar(255), dateAttribution timestamp, dateCreation timestamp, dateResolution timestamp, statut varchar(255), titre varchar(255), sujet_id integer, utilisateurStandard_id integer, utilisateurSupport_id integer, primary key (id))
+create table Utilisateur (DTYPE varchar(31) not null, id integer not null, nom varchar(255), prenom varchar(255), equipe varchar(255), primary key (id))
+alter table Commentaire add constraint FKma1ry2q314mgkv8q8u5lrafdl foreign key (ticket_id) references Ticket
+alter table Commentaire add constraint FKb7i29ppss6dbhwjihif0x2sg6 foreign key (utilisateur_id) references Utilisateur
+alter table Ticket add constraint FKlf62bjr85kurtbajjcjtmef5y foreign key (sujet_id) references Sujet
+alter table Ticket add constraint FK2g9igmtlqd0qgykqm043ans07 foreign key (utilisateurStandard_id) references Utilisateur
+alter table Ticket add constraint FK4dm5bad2pl0xjtw80lf7qntd foreign key (utilisateurSupport_id) references Utilisateur
 DISCONNECT
 /*C15*/SET SCHEMA PUBLIC
 drop table if exists Commentaire CASCADE 
@@ -36,11 +66,7 @@ alter table Ticket add constraint FKlf62bjr85kurtbajjcjtmef5y foreign key (sujet
 alter table Ticket add constraint FK2g9igmtlqd0qgykqm043ans07 foreign key (utilisateurStandard_id) references Utilisateur
 alter table Ticket add constraint FK4dm5bad2pl0xjtw80lf7qntd foreign key (utilisateurSupport_id) references Utilisateur
 DISCONNECT
-/*C11*/SET SCHEMA PUBLIC
-DISCONNECT
 /*C16*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C18*/SET SCHEMA PUBLIC
 drop table if exists Commentaire CASCADE 
 drop table if exists Sujet CASCADE 
 drop table if exists Ticket CASCADE 
@@ -56,13 +82,8 @@ alter table Commentaire add constraint FKb7i29ppss6dbhwjihif0x2sg6 foreign key (
 alter table Ticket add constraint FKlf62bjr85kurtbajjcjtmef5y foreign key (sujet_id) references Sujet
 alter table Ticket add constraint FK2g9igmtlqd0qgykqm043ans07 foreign key (utilisateurStandard_id) references Utilisateur
 alter table Ticket add constraint FK4dm5bad2pl0xjtw80lf7qntd foreign key (utilisateurSupport_id) references Utilisateur
-INSERT INTO UTILISATEUR VALUES('UtilisateurStandard',1,'nguetta','emma',NULL)
-INSERT INTO SUJET VALUES(2,'test')
-INSERT INTO TICKET VALUES(3,NULL,NULL,NULL,NULL,'cr\u00e9ation','ticket_test',2,1,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
-COMMIT
 DISCONNECT
-/*C19*/SET SCHEMA PUBLIC
+/*C17*/SET SCHEMA PUBLIC
 drop table if exists Commentaire CASCADE 
 drop table if exists Sujet CASCADE 
 drop table if exists Ticket CASCADE 
@@ -78,10 +99,3 @@ alter table Commentaire add constraint FKb7i29ppss6dbhwjihif0x2sg6 foreign key (
 alter table Ticket add constraint FKlf62bjr85kurtbajjcjtmef5y foreign key (sujet_id) references Sujet
 alter table Ticket add constraint FK2g9igmtlqd0qgykqm043ans07 foreign key (utilisateurStandard_id) references Utilisateur
 alter table Ticket add constraint FK4dm5bad2pl0xjtw80lf7qntd foreign key (utilisateurSupport_id) references Utilisateur
-INSERT INTO UTILISATEUR VALUES('UtilisateurStandard',1,'nguetta','emma',NULL)
-INSERT INTO UTILISATEUR VALUES('UtilisateurSupport',2,'bamba','arnaurd','\u00e9quipe')
-INSERT INTO SUJET VALUES(3,'test')
-INSERT INTO TICKET VALUES(4,NULL,NULL,NULL,NULL,'cr\u00e9ation','ticket_test',3,1,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
-COMMIT
-DISCONNECT
